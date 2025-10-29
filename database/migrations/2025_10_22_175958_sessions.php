@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary(); // ID de session
+            $table->string('id', 191)->primary(); // ID de session
             $table->foreignId('user_id')->nullable()->index(); // ID utilisateur (optionnel)
             $table->string('ip_address', 45)->nullable(); // IP de l'utilisateur
             $table->text('user_agent')->nullable(); // User agent (navigateur)
