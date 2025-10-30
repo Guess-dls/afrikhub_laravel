@@ -136,3 +136,9 @@ use App\Http\Controllers\MailTestController;
 
 Route::get('/sendmail', [MailTestController::class, 'index'])->name('sendmail');
 Route::post('/sendmail', [MailTestController::class, 'send'])->name('mail.send');
+
+
+
+// ajouter 30 octobre 
+
+Route::get('residences/{id}/activation', [AdminController::class, 'activation'])->name('admin.residences.activation');
