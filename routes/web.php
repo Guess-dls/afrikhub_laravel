@@ -34,8 +34,6 @@ Route::get('/accueil', function () { return view('pages.dashboard'); })->middlew
 Route::get('/mise_en_ligne', function () { return view('pages.mise_en_ligne'); })->name('mise_en_ligne');
 
 
-
-
 // lien vers une page avec un id ciblé ou un element ciblé dans l'url
 
 
@@ -131,3 +129,10 @@ Route::post('/admin/users/{user}/toggle', [AdminController::class, 'toggleUserSu
 Route::delete('/admin/users/{user}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy');
 
 
+
+
+
+use App\Http\Controllers\MailTestController;
+
+Route::get('/send-mail', [MailTestController::class, 'index'])->name('mail.form');
+Route::post('/send-mail', [MailTestController::class, 'send'])->name('mail.send');
