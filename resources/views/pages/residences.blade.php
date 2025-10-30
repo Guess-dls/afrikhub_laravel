@@ -149,9 +149,9 @@
                 @foreach($residences as $residence)
                     <div class="bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col hover:shadow-indigo-300/50 transition duration-300 transform hover:scale-[1.01] border border-gray-100">
                         @php
-                            $images = json_decode($residence->img, true);
-                            $firstImage = $images[0] ?? 'https://placehold.co/400x250/E0E7FF/4F46E5?text=Pas+d\'image';
-                        @endphp
+    $images = json_decode($residence->img, true) ?: [];
+    $firstImage = $images[0] ?? 'https://placehold.co/400x250/E0E7FF/4F46E5?text=Pas+d\'image';
+@endphp
 
                         {{-- Lien visible sur l'image principale pour GLightbox --}}
                         <a href="{{ asset('storage/' . $firstImage) }}" class="glightbox block" data-gallery="residence-{{ $residence->id }}" data-title="{{ $residence->nom }}">
@@ -160,10 +160,10 @@
 
                         {{-- Liens invisibles pour les autres images de la galerie --}}
                         @foreach($images as $key => $image)
-                            @if($key > 0)
-                                <a href="{{ asset('storage/' . $image) }}" class="glightbox" data-gallery="residence-{{ $residence->id }}" data-title="{{ $residence->nom }}" style="display:none;"></a>
-                            @endif
-                        @endforeach
+    @if($key > 0)
+        <a href="{{ asset('storage/' . $image) }}" class="glightbox" data-gallery="residence-{{ $residence->id }}" data-title="{{ $residence->nom }}" style="display:none;"></a>
+    @endif
+@endforeach
 
                         <div class="p-6 flex flex-col flex-grow">
                             <h5 class="text-xl font-extrabold text-indigo-800 mb-2 border-b border-gray-100 pb-2 truncate">{{ $residence->nom }}</h5>
