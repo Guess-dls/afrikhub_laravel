@@ -10,7 +10,7 @@ class MailTestController extends Controller
     // Affiche le formulaire
     public function index()
     {
-        return view('sendmail'); // ta vue reste inchangée
+        return view('sendmail');
     }
 
     // Envoie le mail
@@ -22,15 +22,13 @@ class MailTestController extends Controller
         ]);
 
         try {
-            // Envoi du mail directement sans Mailable
             Mail::send([], [], function ($mail) use ($request) {
                 $mail->to($request->email)
                     ->subject('Message depuis le formulaire')
-                    ->setBody(
+                    ->html(
                         '<p>Vous avez reçu le message suivant :</p>
                         <p>' . htmlspecialchars($request->message) . '</p>
-                        <p>Merci,<br>' . config('app.name') . '</p>',
-                        'text/html'
+                        <p>Merci,<br>' . config('app.name') . '</p>'
                     );
             });
 
