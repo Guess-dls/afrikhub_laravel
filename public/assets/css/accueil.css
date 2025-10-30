@@ -1,15 +1,25 @@
  /* ---------------- HEADER ET NAV ---------------- */
+
 header {
-  position: relative;
+  position: fixed; /* passe de relative à fixed */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px; /* hauteur fixe du header */
   background: linear-gradient(135deg, #006d77, #00afb9);
   color: white;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  z-index: 10;
-  padding: 0.5rem 1rem;
+  z-index: 1000; /* au-dessus des autres éléments */
+  padding: 0 1rem; /* ajusté horizontalement */
+  display: flex; 
   align-items: center;
   justify-content: space-between;
 }
 
+/* Compense la hauteur du header pour le contenu */
+main, section {
+  padding-top: 70px; /* même que la hauteur du header */
+}
 header img {
   max-height: 60px;
 }
