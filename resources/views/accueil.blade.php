@@ -11,33 +11,28 @@
     <style>
         /* ---------------- FIX DU FOOTER & LAYOUT PRINCIPAL ---------------- */
         body {
-          min-height: 100vh; /* S'assure que le corps prend au moins toute la hauteur de la fenêtre */
+          min-height: 100vh;
           display: flex;
-          flex-direction: column; /* Organise les enfants (header, main, footer) verticalement */
-          padding-top: 70px; /* Compense la hauteur du header fixe, ajusté à la taille réelle du header */
+          flex-direction: column;
+          padding-top: 0; 
         }
         
         main {
-          flex-grow: 1; /* Permet au contenu principal de prendre tout l'espace restant, poussant le footer vers le bas */
-          background-color: #f8f8f8; /* Fond léger pour le contenu */
+          flex-grow: 1;
+          background-color: #f8f8f8;
         }
 
-        /* ---------------- HEADER ET NAV (Code fourni, ajusté pour la compatibilité) ---------------- */
+        /* ---------------- HEADER ET NAV ---------------- */
         header {
-          position: relative; /* Changé de 'fixed' à 'relative' comme demandé dans le nouveau CSS */
+          position: relative;
           background: linear-gradient(135deg, #006d77, #00afb9);
           color: white;
           box-shadow: 0 4px 12px rgba(0,0,0,0.2);
           z-index: 10;
           padding: 0.5rem 1rem;
-          display: flex; /* Ajouté pour le layout du header */
+          display: flex;
           align-items: center;
           justify-content: space-between;
-        }
-        
-        /* Réinitialisation de la hauteur de padding-top du body car le header n'est plus "fixed" */
-        body {
-            padding-top: 0; 
         }
 
         header img {
@@ -45,7 +40,7 @@
           object-fit: contain;
         }
 
-        /* Styles pour les liens de bureau (basés sur le HTML existant) */
+        /* Styles pour les liens de bureau */
         .nav-desktop-links a {
             color: white;
             text-decoration: none;
@@ -77,9 +72,7 @@
           color: #fff;
         }
         
-        /* ---------------- OFFCANVAS CUSTOM STYLE (SIDEBAR MOBILE - conservé) ---------------- */
-
-        /* En-tête du Offcanvas (Sidebar) */
+        /* ---------------- OFFCANVAS CUSTOM STYLE ---------------- */
         .offcanvas-header {
             background: linear-gradient(135deg, #006d77, #00afb9);
             color: white;
@@ -92,12 +85,10 @@
             opacity: 1;
         }
 
-        /* Corps du Offcanvas */
         .offcanvas-body {
             padding: 0;
         }
 
-        /* Styles des éléments de la liste */
         .offcanvas-body .list-group-item {
             border-left: none;
             border-right: none;
@@ -106,7 +97,6 @@
             transition: background-color 0.3s ease, border-left 0.3s ease;
         }
 
-        /* Style des liens à l'intérieur */
         .offcanvas-body .list-group-item a {
             color: #006d77;
             text-decoration: none;
@@ -115,7 +105,6 @@
             transition: color 0.3s ease;
         }
 
-        /* Effet de survol */
         .offcanvas-body .list-group-item:hover {
             background-color: #e0f7fa;
             border-left: 5px solid #00afb9;
@@ -125,7 +114,7 @@
             color: #004d40;
         }
 
-        /* ---------------- SECTION ACCUEIL (Code fourni, URL d'image ajustée) ---------------- */
+        /* ---------------- SECTION ACCUEIL ---------------- */
         #accueil {
           background: linear-gradient(rgba(0,91,107,0.7), rgba(0,91,107,0.5)), url('https://placehold.co/1920x700/555555/eeeeee?text=Image+d%27Accueil') no-repeat center center / cover;
           height: 700px;
@@ -152,7 +141,7 @@
           text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
         }
         
-        /* ---------------- SECTION HÉBERGEMENT (Code fourni) ---------------- */
+        /* ---------------- SECTION HÉBERGEMENT ---------------- */
         #hebergement {
           padding: 3rem 1rem;
           background: #e0f2f1;
@@ -207,10 +196,28 @@
           font-weight: 600;
           color: #004d40;
         }
+        
+        /* Liste de services masquée/affichée par JS */
+        .services-list {
+            list-style: none;
+            padding-left: 15px;
+            margin-bottom: 0;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+        }
+        
+        .services-list.show-services {
+            max-height: 200px;
+            opacity: 1;
+            padding-bottom: 10px;
+        }
+        
         .services-list li {
           padding: 8px 0;
           transition: transform 0.2s ease, background 0.3s ease;
-          list-style-type: '— '; /* Rétabli le style de liste pour cohérence */
+          list-style-type: '— ';
           margin-left: 0.5rem;
         }
 
@@ -222,12 +229,13 @@
         .toggle-services i {
           transition: transform 0.3s ease, color 0.3s ease;
         }
-
-        .toggle-services:hover i { color: #004d40; }
         
-        /* Reste du CSS pour les résidences, footer, etc. (ajusté ou conservé) */
-
-        /* ---------------- Bouton Général (btn-reserver) ---------------- */
+        /* Rotation de l'icône au clic */
+        .toggle-services.rotated i {
+            transform: rotate(180deg);
+        }
+        
+        /* Bouton "Réserver" */
         .btn-reserver {
             display: inline-block;
             padding: 12px 28px;
@@ -247,15 +255,8 @@
         }
 
         @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-5px); /* Diminué légèrement le rebond */
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
         
         /* ---------------- SECTION RÉSIDENCES ---------------- */
@@ -274,7 +275,6 @@
           letter-spacing: 2px;
         }
 
-        /* Style des cartes de résidence */
         .residence-card {
             border: none;
             border-radius: 15px;
@@ -294,11 +294,6 @@
             width: 100%;
         }
 
-        .residence-card .card-body {
-            padding: 1.5rem;
-            background-color: white;
-        }
-
         .residence-card .card-title {
             color: #006d77;
             font-weight: 700;
@@ -316,7 +311,6 @@
             color: #00afb9;
         }
 
-        /* Boutons dans les cartes */
         .btn-card-action {
             width: 100%;
             border-radius: 8px;
@@ -423,15 +417,18 @@
                   </h2>
                   <div id="collapseTypes" class="accordion-collapse collapse show" aria-labelledby="headingTypes" data-bs-parent="#accordionHebergement">
                     <div class="accordion-body">
-                      <div class="mb-3 border-0">
+                      
+                      <div class="mb-3 border-0 type-item">
                         <div class="d-flex align-items-center justify-content-between"><strong>Studio</strong><span class="toggle-services"><i class="fa fa-chevron-down"></i></span></div>
-                        <ul class="services-list mt-2"><li>wifi gratuit</li><li>ventilateur</li><li>caméra de surveillance</li></ul>
+                        <ul class="services-list mt-2 show-services"><li>wifi gratuit</li><li>ventilateur</li><li>caméra de surveillance</li></ul>
                       </div>
-                      <div class="mb-3">
+                      
+                      <div class="mb-3 type-item">
                         <div class="d-flex align-items-center justify-content-between"><strong>Chambre unique</strong><span class="toggle-services"><i class="fa fa-chevron-down"></i></span></div>
                         <ul class="services-list mt-2"><li>wifi gratuit</li><li>climatisation</li><li>petit déjeuner inclus</li></ul>
                       </div>
-                      <div class="mb-3">
+                      
+                      <div class="mb-3 type-item">
                         <div class="d-flex align-items-center justify-content-between"><strong>Villa avec piscine</strong><span class="toggle-services"><i class="fa fa-chevron-down"></i></span></div>
                         <ul class="services-list mt-2"><li>wifi gratuit</li><li>piscine privée</li><li>climatisation</li><li>parking gratuit</li></ul>
                       </div>
@@ -513,4 +510,19 @@
                 <img src="{{ asset('img/residence_3.jpg') }}" class="card-img-top" alt="Image de l'Appartement Chic">
                 <div class="card-body">
                   <h5 class="card-title">Appartement Chic</h5>
-                  <p class="
+                  <p class="card-text">
+                    Appartement de luxe en centre-ville, très bien équipé et moderne.
+                    Proche des transports et commerces.
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="card-price">95€ / nuit</span>
+                    <span class="text-warning">
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    </span>
+                  </div>
+                  <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
+                </div>
+              </div>
+            </div>
+            
+     
