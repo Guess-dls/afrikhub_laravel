@@ -269,7 +269,7 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><a href="{{ route('login') }}" data-bs-dismiss="offcanvas">Connexion</a></li>
           <li class="list-group-item"><a href="{{ route('register') }}" data-bs-dismiss="offcanvas">Inscription</a></li>
-          <li class="list-group-item"><a href="{{ route('admin_connect') }}" data-bs-dismiss="offcanvas">Admin</a></li> 
+          <li class="list-group-item"><a href="{{ route('admin_dashboard') }}" data-bs-dismiss="offcanvas">Admin</a></li> 
           <li class="list-group-item"><a href="#hebergement" data-bs-dismiss="offcanvas">Hébergements</a></li>
           <li class="list-group-item"><a href="#location" data-bs-dismiss="offcanvas">Véhicules</a></li>
           <li class="list-group-item"><a href="#circuits" data-bs-dismiss="offcanvas">Circuits</a></li>
