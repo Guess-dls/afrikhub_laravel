@@ -20,6 +20,17 @@ header {
 main, section {
   padding-top: 70px; /* même que la hauteur du header */
 }
+
+#sidebar {
+  position: fixed;
+  top: 70px;           /* décale le sidebar sous le header */
+  right: 0;
+  width: 300px;        /* largeur de ton sidebar */
+  height: calc(100% - 70px); /* prend tout le reste de la page */
+  z-index: 1100;       /* plus que le header */
+  transform: translateX(100%); /* masqué par défaut */
+  transition: transform 0.3s ease-in-out;
+}
 header img {
   max-height: 60px;
 }
