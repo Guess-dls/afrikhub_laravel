@@ -11,7 +11,7 @@ class MailTestController extends Controller
     // Affiche le formulaire
     public function index()
     {
-        return view('send-mail');
+        return view('sendmail');
     }
 
     // Envoie le mail
