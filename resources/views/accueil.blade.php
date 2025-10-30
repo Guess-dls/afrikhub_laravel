@@ -174,7 +174,87 @@
             transform: translateY(-2px);
         }
 
-        /* ---------------- SECTION HÉBERGEMENT (CARDS) ---------------- */
+        /* ---------------- SECTION HÉBERGEMENT (ACCORDÉON) ---------------- */
+        #hebergement {
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        #hebergement h2 {
+          font-weight: 800;
+          margin-bottom: 3rem;
+          text-align: center;
+          font-size: 2.8rem;
+          color: #006d77;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+        }
+
+        #hebergement img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .accordion-button {
+            background-color: #00afb9 !important;
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: capitalize;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #006d77 !important;
+            box-shadow: none;
+        }
+
+        .accordion-body .mb-3 {
+            padding: 0.75rem;
+            border-bottom: 1px solid #c8e6c9;
+            cursor: pointer;
+        }
+
+        .accordion-body .mb-3:hover {
+            background-color: #e8f5e9;
+        }
+
+        .accordion-body .services-list {
+            list-style: none;
+            padding-left: 15px;
+            margin-bottom: 0;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #388e3c;
+            display: none; /* Cache par défaut */
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+        }
+        
+        .accordion-body .services-list.show-services {
+            display: block; /* Affiche quand actif */
+            max-height: 200px; /* Doit être assez grand pour le contenu */
+            padding-bottom: 10px;
+        }
+
+        .toggle-services .fa {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-services.rotated .fa {
+            transform: rotate(180deg);
+        }
+
+        .accordion-body ul li {
+            list-style-type: '— ';
+            margin-left: 0.5rem;
+        }
+
+
+        /* ---------------- SECTION RÉSIDENCES ---------------- */
         #residences {
           padding: 3rem 1rem;
           background: #f8f8f8;
@@ -262,7 +342,7 @@
           }
         }
         @media (max-width: 768px) {
-          #residences h2 { font-size: 2rem; }
+          #residences h2, #hebergement h2 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -316,6 +396,63 @@
             <span class="fs-6">Explorez l'Afrique autrement avec Afrik’Hub</span><br><br>
             <a href="{{ route('recherche', ['action' => 'recherche']) }}" class="btn-reserver me-2">Réserver</a>
             <a href="{{ route('mise_en_ligne', ['action' => 'mise_en_ligne']) }}" class="btn-reserver">Ajouter un bien</a>
+          </div>
+        </section>
+        
+        <section id="hebergement" class="my-2 col-12 row m-0 justify-content-center">
+          <h2>hébergements</h2>
+          <div class="row g-4 align-items-center col-lg-6 col-md-10">
+            <div class="col-12">
+              <img src="{{ asset('img/hebergement.jpg') }}" class="img-fluid" alt="Exemple d'hébergement" />
+            </div>
+
+            <div class="col-12">
+              <div class="accordion" id="accordionHebergement">
+                <div class="accordion-item border-0" style="background: #e0f2f1;">
+                  <h2 class="accordion-header" id="headingTypes">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTypes" aria-expanded="true" aria-controls="collapseTypes">
+                      types d'hébergements
+                    </button>
+                  </h2>
+                  <div id="collapseTypes" class="accordion-collapse collapse show" aria-labelledby="headingTypes" data-bs-parent="#accordionHebergement">
+                    <div class="accordion-body">
+                      <div class="mb-3 border-0">
+                        <div class="d-flex align-items-center justify-content-between"><strong>Studio</strong><span class="toggle-services"><i class="fa fa-chevron-down"></i></span></div>
+                        <ul class="services-list mt-2"><li>wifi gratuit</li><li>ventilateur</li><li>caméra de surveillance</li></ul>
+                      </div>
+                      <div class="mb-3">
+                        <div class="d-flex align-items-center justify-content-between"><strong>Chambre unique</strong><span class="toggle-services"><i class="fa fa-chevron-down"></i></span></div>
+                        <ul class="services-list mt-2"><li>wifi gratuit</li><li>climatisation</li><li>petit déjeuner inclus</li></ul>
+                      </div>
+                      <div class="mb-3">
+                        <div class="d-flex align-items-center justify-content-between"><strong>Villa avec piscine</strong><span class="toggle-services"><i class="fa fa-chevron-down"></i></span></div>
+                        <ul class="services-list mt-2"><li>wifi gratuit</li><li>piscine privée</li><li>climatisation</li><li>parking gratuit</li></ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item border-0" style="background: #e0f2f1;">
+                  <h2 class="accordion-header" id="headingConditions">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConditions" aria-expanded="false" aria-controls="collapseConditions">
+                      conditions de réservation
+                    </button>
+                  </h2>
+                  <div id="collapseConditions" class="accordion-collapse collapse" aria-labelledby="headingConditions" data-bs-parent="#accordionHebergement">
+                    <div class="accordion-body">
+                      <ul>
+                        <li>réservation préalable requise</li>
+                        <li>acompte de 20% pour confirmation</li>
+                        <li>annulation gratuite jusqu'à 48h avant l'arrivée</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center mt-4">
+                <a href="{{ route('recherche') }}" class="btn-reserver">réserver</a>
+              </div>
+            </div>
           </div>
         </section>
         
@@ -384,41 +521,4 @@
               </div>
             </div>
             
-            <div class="col-12 text-center mt-5">
-                <a href="{{ route('recherche') }}" class="btn-reserver">Voir toutes les résidences</a>
-            </div>
-          </div>
-        </section>
-        
-    </main>
-
-    <footer>
-        <p id="contact">&copy; 2025 afrik’hub. tous droits réservés.<br />afrikhub@gmail.com</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-    
-    <script>
-      // Attacher un événement de clic à tous les liens de l'Offcanvas
-      document.addEventListener('DOMContentLoaded', function() {
-        var offcanvasLinks = document.querySelectorAll('#mobileSidebar .list-group-item a');
-        var offcanvas = document.getElementById('mobileSidebar');
-        var bsOffcanvas = new bootstrap.Offcanvas(offcanvas);
-
-        offcanvasLinks.forEach(function(link) {
-          link.addEventListener('click', function(e) {
-            // Si le lien est une ancre interne (commence par #)
-            if (this.getAttribute('href').startsWith('#')) {
-              // Fermer le menu après un court délai pour laisser l'ancre se déplacer
-              setTimeout(function() {
-                bsOffcanvas.hide();
-              }, 100);
-            }
-            // Pour les routes Laravel, le navigateur va naviguer et le menu se fermera tout seul
-            // Si le lien mène à une autre page, le navigateur s'en charge.
-          });
-        });
-      });
-    </script>
-</body>
-</html>
+            <div
