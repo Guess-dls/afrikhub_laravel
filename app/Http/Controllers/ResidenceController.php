@@ -41,7 +41,11 @@ class ResidenceController extends Controller
 
             foreach ($request->file('images') as $image) {
                 $path = $image->store($nomDossier, 'public'); // Enregistre dans /storage/app/public/residences/...
-                $imagesPath[] = $path;
+
+// 🔥 Correction importante pour serveur Linux (Laravel Cloud)
+$path = str_replace('\\', '/', $path);
+
+$imagesPath[] = $path;
             }
         }
 
