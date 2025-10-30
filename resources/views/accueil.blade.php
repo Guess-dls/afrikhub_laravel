@@ -11,17 +11,23 @@
         <div class="col-lg-2 col-md-2 col-3">
           <img class="img-fluid" src="../../public/logo/logo_01.png" alt="Afrik'Hub Logo" />
         </div>
+        
+        <!-- NAVIGATION CORRIGÉE -->
         <nav class="col-lg-10 col-md-10 col-9">
-          <ul class="d-flex justify-content-end py-2">
-            <ul id="entete">
-               <li><a href="{{ route('dashboard') }}" class="bg-dark" aria-label="inscription"><span class="fa fa-sign-in"></span><span class="badge">connectiton</span></a></li>
-              <li><a href="{{ route('register') }}" class="bg-dark" aria-label="inscription"><span class="fa fa-sign-in"></span><span class="badge">inscription</span></a></li>
-              <li><a href="{{ route('admin_dashboard') }}" class="bg-danger"><span class="fa fa-user-shield"></span><span class="badge">admin</span></a></li>
-              <li><a href="#hebergement"><span class="fa fa-home"></span><span class="badge">herbergement</span></a></li>
-              <li><a href="#location"><span class="fa fa-car"></span><span class="badge">vehicule</span></a></li>
-              <li><a href="#contact"><span class="fa fa-phone"></span><span class="badge">contact</span></a></li>
-            </ul>
-            <li class="nav-item dropdown col-12">
+          <!-- 
+            
+          <ul class="d-flex justify-content-end py-2 align-items-center m-0 p-0" style="list-style: none;">
+            
+            <!-- Liens de bureau -->
+            <li class="nav-desktop-item"><a href="{{ route('dashboard') }}" class="bg-dark" aria-label="Connexion"><span class="fa fa-sign-in"></span><span class="badge">connexion</span></a></li>
+            <li class="nav-desktop-item"><a href="{{ route('register') }}" class="bg-dark" aria-label="inscription"><span class="fa fa-sign-in"></span><span class="badge">inscription</span></a></li>
+            <li class="nav-desktop-item"><a href="{{ route('admin_dashboard') }}" class="bg-danger"><span class="fa fa-user-shield"></span><span class="badge">admin</span></a></li>
+            <li class="nav-desktop-item"><a href="#hebergement"><span class="fa fa-home"></span><span class="badge">hébergement</span></a></li>
+            <li class="nav-desktop-item"><a href="#location"><span class="fa fa-car"></span><span class="badge">vehicule</span></a></li>
+            <li class="nav-desktop-item"><a href="#contact"><span class="fa fa-phone"></span><span class="badge">contact</span></a></li>
+            
+            <!-- Lien de menu mobile (géré par le CSS) -->
+            <li class="nav-item dropdown">
               <a href="#" class="dropdown-toggle">menu</a>
               <ul class="dropdown-menu row m-0 py-2 col-8 col-md-6" aria-label="submenu">
                 <li><a class="dropdown-item" href="{{ route('login') }}">connexion</a></li>
@@ -48,6 +54,7 @@
         <a href="../../accueil/php/redirection.php?action=mise_en_ligne" class="btn-reserver">Ajouter un bien</a>
       </div>
     </section>
+    
     <!-- Section hébergement -->
     <section id="hebergement" class="my-2 col-12 row m-0 justify-content-center">
       <h2>hébergements</h2>
@@ -57,6 +64,7 @@
         </div>
 
         <div class="col-12">
+          <!-- NOTE: L'accordéon fonctionnera maintenant avec le JS de Bootstrap -->
           <div class="accordion" id="accordionHebergement">
             <div class="accordion-item border-0" style="background: #e0f2f1;">
               <h2 class="accordion-header" id="headingTypes">
@@ -64,6 +72,7 @@
                   types d'hébergements
                 </button>
               </h2>
+              <!-- NOTE: 'collapse show' au lieu de 'collapse' si vous voulez qu'il soit ouvert par défaut -->
               <div id="collapseTypes" class="accordion-collapse collapse" aria-labelledby="headingTypes" data-bs-parent="#accordionHebergement">
                 <div class="accordion-body">
                   <div class="mb-3 border-0">
@@ -115,31 +124,9 @@
 
     <!-- Scripts -->
 @section('script')
-    <script>
-      document.querySelectorAll(".accordion-button").forEach(button => {
-        button.addEventListener("click", (e) => {
-          e.stopPropagation();
-          const parent = button.closest(".accordion-item");
-          const content = parent.querySelector(".accordion-collapse");
-          if (parent.classList.contains("active")) {
-            parent.classList.remove("active");
-            content.style.maxHeight = null;
-          } else {
-            document.querySelectorAll(".accordion-item.active").forEach(item => {
-              item.classList.remove("active");
-              item.querySelector(".accordion-collapse").style.maxHeight = null;
-            });
-            parent.classList.add("active");
-            content.style.maxHeight = content.scrollHeight + "px";
-          }
-        });
-      });
-      document.addEventListener("click", () => {
-        document.querySelectorAll(".accordion-item.active").forEach(item => {
-          item.classList.remove("active");
-          item.querySelector(".accordion-collapse").style.maxHeight = null;
-        });
-      });
-    </script>
+    <!-- 
+      NOTE: Le script personnalisé pour l'accordéon a été SUPPRIMÉ.
+      Celui de Bootstrap ci-dessous est suffisant.
+    -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 @endsection
