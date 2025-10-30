@@ -139,7 +139,6 @@ nav ul li a:hover {
 
 /* ---------------- SECTION ACCUEIL ---------------- */
 #accueil {
-  background: linear-gradient(rgba(0,91,107,0.7), rgba(0,91,107,0.5)), url('../images/VQl00VQhe5oOsfJLyJN1M1l5pLBtMdBq9TKcYTuP.webp') no-repeat center center / cover;
   height: 700px;
   display: flex;
   align-items: center;
