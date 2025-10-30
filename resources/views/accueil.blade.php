@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page d'Accueil Afrik'Hub</title>
     
-    <!-- Liens Bootstrap et Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- CSS COMPLET ET INLINE -->
     <style>
         /* ---------------- FIX DU FOOTER & LAYOUT PRINCIPAL ---------------- */
         body {
@@ -270,20 +268,15 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header class="p-1">
       <div class="col-12 row m-0 align-items-center">
         
-        <!-- Logo -->
         <div class="col-lg-2 col-md-2 col-3">
-          <!-- ROUTES BLADE POUR L'ASSET -->
           <img class="img-fluid" src="{{ asset('logo/logo_01.png') }}" alt="Afrik'Hub Logo" />
         </div>
         
-        <!-- NAV -->
         <nav class="col-lg-10 col-md-10 col-9 d-flex justify-content-end align-items-center">
           
-          <!-- LIENS DE BUREAU (AVEC ROUTES BLADE) -->
           <ul class="nav-desktop-links d-none d-lg-flex list-unstyled m-0 p-0 gap-3">
             <li><a href="{{ route('dashboard') }}" class="bg-dark" aria-label="Connexion"><span class="fa fa-sign-in"></span><span class="badge">connexion</span></a></li>
             <li><a href="{{ route('register') }}" class="bg-dark" aria-label="Inscription"><span class="fa fa-sign-in"></span><span class="badge">inscription</span></a></li>
@@ -292,7 +285,6 @@
             <li><a href="#contact"><span class="fa fa-phone"></span><span class="badge">contact</span></a></li>
           </ul>
 
-          <!-- BOUTON MOBILE -->
           <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
             <span class="fa fa-bars fs-4" style="color: white;"></span>
           </button>
@@ -300,19 +292,16 @@
       </div>
     </header>
 
-    <!-- LE OFFCANVAS (Sidebar Mobile - Navigation Corrigée) -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="mobileSidebarLabel">Menu Afrik'Hub</h5>
-        <!-- Le bouton de fermeture doit toujours avoir data-bs-dismiss -->
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
         <ul class="list-group list-group-flush">
-          <!-- CORRECTION : data-bs-dismiss a été retiré de tous les liens pour permettre la navigation -->
           <li class="list-group-item"><a href="{{ route('login') }}">Connexion</a></li>
           <li class="list-group-item"><a href="{{ route('register') }}">Inscription</a></li>
-          <li class="list-group-item"><a href="{{ route('admin_connect') }}">Admin</a></li> 
+          <li class="list-group-item"><a href="{{ route('admin_dashboard') }}">Admin</a></li> 
           <li class="list-group-item"><a href="#residences">Résidences</a></li>
           <li class="list-group-item"><a href="#contact">Contact</a></li>
         </ul>
@@ -320,29 +309,23 @@
     </div>
 
 
-    <!-- Contenu Principal -->
     <main>
-        <!-- Section accueil -->
         <section id="accueil" class="text-center py-5">
           <div>
             <h2>Bienvenue</h2>
             <span class="fs-6">Explorez l'Afrique autrement avec Afrik’Hub</span><br><br>
-            <!-- BOUTONS AVEC ROUTES BLADE -->
             <a href="{{ route('recherche', ['action' => 'recherche']) }}" class="btn-reserver me-2">Réserver</a>
             <a href="{{ route('mise_en_ligne', ['action' => 'mise_en_ligne']) }}" class="btn-reserver">Ajouter un bien</a>
           </div>
         </section>
         
-        <!-- SECTION DE RÉSIDENCES -->
         <section id="residences" class="container py-5">
           <h2>Nos Résidences Sélectionnées</h2>
           
           <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             
-            <!-- Carte Résidence 1 -->
             <div class="col">
               <div class="card residence-card">
-                <!-- UTILISATION DE BLADE POUR L'IMAGE -->
                 <img src="{{ asset('img/residence_1.jpg') }}" class="card-img-top" alt="Image de la Résidence Soleil">
                 <div class="card-body">
                   <h5 class="card-title">Résidence Soleil [Image d'un immeuble en Afrique]</h5>
@@ -356,16 +339,13 @@
                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i>
                     </span>
                   </div>
-                  <!-- LIEN ANCRE (#) -->
                   <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
                 </div>
               </div>
             </div>
 
-            <!-- Carte Résidence 2 -->
             <div class="col">
               <div class="card residence-card">
-                <!-- UTILISATION DE BLADE POUR L'IMAGE -->
                 <img src="{{ asset('img/residence_2.jpg') }}" class="card-img-top" alt="Image de la Villa Oasis">
                 <div class="card-body">
                   <h5 class="card-title">Villa Oasis</h5>
@@ -379,16 +359,13 @@
                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
                     </span>
                   </div>
-                  <!-- LIEN ANCRE (#) -->
                   <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
                 </div>
               </div>
             </div>
 
-            <!-- Carte Résidence 3 -->
             <div class="col">
               <div class="card residence-card">
-                <!-- UTILISATION DE BLADE POUR L'IMAGE -->
                 <img src="{{ asset('img/residence_3.jpg') }}" class="card-img-top" alt="Image de l'Appartement Chic">
                 <div class="card-body">
                   <h5 class="card-title">Appartement Chic</h5>
@@ -402,15 +379,12 @@
                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
                     </span>
                   </div>
-                  <!-- LIEN ANCRE (#) -->
                   <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
                 </div>
               </div>
             </div>
             
-            <!-- Bouton pour voir toutes les résidences -->
             <div class="col-12 text-center mt-5">
-                <!-- LIEN ANCRE (#) -->
                 <a href="{{ route('recherche') }}" class="btn-reserver">Voir toutes les résidences</a>
             </div>
           </div>
@@ -418,15 +392,12 @@
         
     </main>
 
-    <!-- FOOTER FIXÉ EN BAS -->
     <footer>
         <p id="contact">&copy; 2025 afrik’hub. tous droits réservés.<br />afrikhub@gmail.com</p>
     </footer>
 
-    <!-- Scripts Bootstrap (pour le Offcanvas et les Cards) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     
-    <!-- Script pour fermer le Offcanvas après navigation (même sans rechargement de page) -->
     <script>
       // Attacher un événement de clic à tous les liens de l'Offcanvas
       document.addEventListener('DOMContentLoaded', function() {
