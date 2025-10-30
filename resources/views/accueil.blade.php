@@ -129,6 +129,7 @@
 
         /* ---------------- SECTION ACCUEIL ---------------- */
         #accueil {
+        /* Utilisez une image de placeholder pour simuler l'asset */
         background: linear-gradient(rgba(0,91,107,0.7), rgba(0,91,107,0.5)),  
                url('https://placehold.co/1920x700/555555/eeeeee?text=Image+d%27Accueil')  
                no-repeat center center / cover;  
@@ -299,19 +300,21 @@
       </div>
     </header>
 
-    <!-- LE OFFCANVAS (Sidebar Mobile - AVEC ROUTES BLADE) -->
+    <!-- LE OFFCANVAS (Sidebar Mobile - Navigation Corrigée) -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="mobileSidebarLabel">Menu Afrik'Hub</h5>
+        <!-- Le bouton de fermeture doit toujours avoir data-bs-dismiss -->
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><a href="{{ route('login') }}" data-bs-dismiss="offcanvas">Connexion</a></li>
-          <li class="list-group-item"><a href="{{ route('register') }}" data-bs-dismiss="offcanvas">Inscription</a></li>
-          <li class="list-group-item"><a href="{{ route('admin_dashboard') }}" data-bs-dismiss="offcanvas">Admin</a></li> 
-          <li class="list-group-item"><a href="#residences" data-bs-dismiss="offcanvas">Résidences</a></li>
-          <li class="list-group-item"><a href="#contact" data-bs-dismiss="offcanvas">Contact</a></li>
+          <!-- CORRECTION : data-bs-dismiss a été retiré de tous les liens pour permettre la navigation -->
+          <li class="list-group-item"><a href="{{ route('login') }}">Connexion</a></li>
+          <li class="list-group-item"><a href="{{ route('register') }}">Inscription</a></li>
+          <li class="list-group-item"><a href="{{ route('admin_connect') }}">Admin</a></li> 
+          <li class="list-group-item"><a href="#residences">Résidences</a></li>
+          <li class="list-group-item"><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -342,7 +345,7 @@
                 <!-- UTILISATION DE BLADE POUR L'IMAGE -->
                 <img src="{{ asset('img/residence_1.jpg') }}" class="card-img-top" alt="Image de la Résidence Soleil">
                 <div class="card-body">
-                  <h5 class="card-title">Résidence Soleil [Image of Africa]</h5>
+                  <h5 class="card-title">Résidence Soleil [Image d'un immeuble en Afrique]</h5>
                   <p class="card-text">
                     Studio moderne avec vue sur mer, parfait pour un séjour en couple. 
                     Situé au cœur de la ville.
@@ -423,5 +426,28 @@
     <!-- Scripts Bootstrap (pour le Offcanvas et les Cards) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     
+    <!-- Script pour fermer le Offcanvas après navigation (même sans rechargement de page) -->
+    <script>
+      // Attacher un événement de clic à tous les liens de l'Offcanvas
+      document.addEventListener('DOMContentLoaded', function() {
+        var offcanvasLinks = document.querySelectorAll('#mobileSidebar .list-group-item a');
+        var offcanvas = document.getElementById('mobileSidebar');
+        var bsOffcanvas = new bootstrap.Offcanvas(offcanvas);
+
+        offcanvasLinks.forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            // Si le lien est une ancre interne (commence par #)
+            if (this.getAttribute('href').startsWith('#')) {
+              // Fermer le menu après un court délai pour laisser l'ancre se déplacer
+              setTimeout(function() {
+                bsOffcanvas.hide();
+              }, 100);
+            }
+            // Pour les routes Laravel, le navigateur va naviguer et le menu se fermera tout seul
+            // Si le lien mène à une autre page, le navigateur s'en charge.
+          });
+        });
+      });
+    </script>
 </body>
 </html>
