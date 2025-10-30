@@ -1,4 +1,3 @@
-
 @extends('heritage')
 @section('titre', 'accueil')
 @section('ux-ui')
@@ -19,7 +18,7 @@
               <li><a href="{{ route('register') }}" class="bg-dark" aria-label="inscription"><span class="fa fa-sign-in"></span><span class="badge">inscription</span></a></li>
               <li><a href="{{ route('admin_dashboard') }}" class="bg-danger"><span class="fa fa-user-shield"></span><span class="badge">admin</span></a></li>
               <li><a href="#hebergement"><span class="fa fa-home"></span><span class="badge">herbergement</span></a></li>
-              <li><a href="{{ route('mail.send') }}"><span class="fa fa-car"></span><span class="badge">vehicule</span></a></li>
+              <li><a href="#location"><span class="fa fa-car"></span><span class="badge">vehicule</span></a></li>
               <li><a href="#contact"><span class="fa fa-phone"></span><span class="badge">contact</span></a></li>
             </ul>
             <li class="nav-item dropdown col-12">
@@ -144,4 +143,3 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 @endsection
-
