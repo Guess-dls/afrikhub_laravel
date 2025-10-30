@@ -9,8 +9,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- CSS COMPLET ET INLINE COMME DEMANDÉ -->
+    <!-- CSS COMPLET ET INLINE -->
     <style>
+        /* ---------------- FIX DU FOOTER & LAYOUT PRINCIPAL ---------------- */
+        body {
+          min-height: 100vh; /* S'assure que le corps prend au moins toute la hauteur de la fenêtre */
+          display: flex;
+          flex-direction: column; /* Organise les enfants (header, main, footer) verticalement */
+          padding-top: 70px; /* Compense la hauteur du header fixe */
+        }
+        
+        main {
+          flex-grow: 1; /* Permet au contenu principal de prendre tout l'espace restant, poussant le footer vers le bas */
+          background-color: #f8f8f8; /* Fond léger pour le contenu */
+        }
+
         /* ---------------- HEADER ET NAV ---------------- */
 
         header {
@@ -28,9 +41,6 @@
           align-items: center;
           justify-content: space-between;
         }
-
-        /* Compense la hauteur du header pour le contenu */
-        body { padding-top: 70px; } 
 
         header img {
           max-height: 60px;
@@ -73,14 +83,14 @@
 
         /* En-tête du Offcanvas (Sidebar) */
         .offcanvas-header {
-            background: linear-gradient(135deg, #006d77, #00afb9); /* Dégradé vert-bleu */
+            background: linear-gradient(135deg, #006d77, #00afb9);
             color: white;
             border-bottom: none;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .offcanvas .btn-close {
-            filter: invert(1) grayscale(100%) brightness(200%); /* Rend le X blanc */
+            filter: invert(1) grayscale(100%) brightness(200%);
             opacity: 1;
         }
 
@@ -109,8 +119,8 @@
 
         /* Effet de survol */
         .offcanvas-body .list-group-item:hover {
-            background-color: #e0f7fa; /* Couleur de fond très claire */
-            border-left: 5px solid #00afb9; /* Bordure d'accentuation à gauche */
+            background-color: #e0f7fa;
+            border-left: 5px solid #00afb9;
         }
 
         .offcanvas-body .list-group-item:hover a {
@@ -119,7 +129,6 @@
 
         /* ---------------- SECTION ACCUEIL ---------------- */
         #accueil {
-        /* Placeholder pour l'image d'accueil */
         background: linear-gradient(rgba(0,91,107,0.7), rgba(0,91,107,0.5)),  
                url('https://placehold.co/1920x700/555555/eeeeee?text=Image+d%27Accueil')  
                no-repeat center center / cover;  
@@ -166,21 +175,15 @@
             transform: translateY(-2px);
         }
 
-        /* ---------------- SECTION HÉBERGEMENT ---------------- */
+        /* ---------------- SECTION HÉBERGEMENT (CARDS) ---------------- */
         #hebergement {
           padding: 3rem 1rem;
-          background: #e0f2f1;
-          color: #004d40;
-          border-radius: 20px;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-          margin: 3rem auto;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          max-width: 1100px;
+          background: #f8f8f8;
         }
 
         #hebergement h2 {
           font-weight: 800;
-          margin-bottom: 2rem;
+          margin-bottom: 3rem;
           text-align: center;
           font-size: 2.8rem;
           color: #006d77;
@@ -188,21 +191,59 @@
           letter-spacing: 2px;
         }
 
-        #hebergement img {
-          border-radius: 15px;
-          box-shadow: 0 8px 18px rgba(0,0,0,0.2);
-          width: 100%;
-          height: auto;
-          object-fit: cover;
+        /* Style des cartes de résidence */
+        .residence-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .residence-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
-        /* Accordion */
-        .accordion-button {
-          background: linear-gradient(135deg, #006d77, #00afb9) !important;
-          color: white !important;
-          font-weight: 700;
-          border-radius: 12px !important;
-          transition: all 0.3s ease;
+        .residence-card img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .residence-card .card-body {
+            padding: 1.5rem;
+            background-color: white;
+        }
+
+        .residence-card .card-title {
+            color: #006d77;
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+        
+        .residence-card .card-text {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .card-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #00afb9;
+        }
+
+        /* Boutons dans les cartes */
+        .btn-card-action {
+            width: 100%;
+            border-radius: 8px;
+            font-weight: 600;
+            background-color: #00afb9;
+            border-color: #00afb9;
+        }
+        .btn-card-action:hover {
+            background-color: #006d77;
+            border-color: #006d77;
         }
         
         /* ---------------- FOOTER ---------------- */
@@ -234,7 +275,7 @@
         
         <!-- Logo -->
         <div class="col-lg-2 col-md-2 col-3">
-          <!-- UTILISATION DE BLADE POUR L'ASSET (Image de votre logo) -->
+          <!-- ROUTES BLADE POUR L'ASSET -->
           <img class="img-fluid" src="{{ asset('logo/logo_01.png') }}" alt="Afrik'Hub Logo" />
         </div>
         
@@ -246,8 +287,7 @@
             <li><a href="{{ route('dashboard') }}" class="bg-dark" aria-label="Connexion"><span class="fa fa-sign-in"></span><span class="badge">connexion</span></a></li>
             <li><a href="{{ route('register') }}" class="bg-dark" aria-label="Inscription"><span class="fa fa-sign-in"></span><span class="badge">inscription</span></a></li>
             <li><a href="{{ route('admin_dashboard') }}" class="bg-danger"><span class="fa fa-user-shield"></span><span class="badge">admin</span></a></li>
-            <li><a href="#hebergement"><span class="fa fa-home"></span><span class="badge">hébergement</span></a></li>
-            <li><a href="#location"><span class="fa fa-car"></span><span class="badge">vehicule</span></a></li>
+            <li><a href="#residences"><span class="fa fa-home"></span><span class="badge">Résidences</span></a></li>
             <li><a href="#contact"><span class="fa fa-phone"></span><span class="badge">contact</span></a></li>
           </ul>
 
@@ -270,10 +310,7 @@
           <li class="list-group-item"><a href="{{ route('login') }}" data-bs-dismiss="offcanvas">Connexion</a></li>
           <li class="list-group-item"><a href="{{ route('register') }}" data-bs-dismiss="offcanvas">Inscription</a></li>
           <li class="list-group-item"><a href="{{ route('admin_dashboard') }}" data-bs-dismiss="offcanvas">Admin</a></li> 
-          <li class="list-group-item"><a href="#hebergement" data-bs-dismiss="offcanvas">Hébergements</a></li>
-          <li class="list-group-item"><a href="#location" data-bs-dismiss="offcanvas">Véhicules</a></li>
-          <li class="list-group-item"><a href="#circuits" data-bs-dismiss="offcanvas">Circuits</a></li>
-          <li class="list-group-item"><a href="#reservation" data-bs-dismiss="offcanvas">Réservation</a></li>
+          <li class="list-group-item"><a href="#residences" data-bs-dismiss="offcanvas">Résidences</a></li>
           <li class="list-group-item"><a href="#contact" data-bs-dismiss="offcanvas">Contact</a></li>
         </ul>
       </div>
@@ -293,69 +330,93 @@
           </div>
         </section>
         
-        <!-- Section hébergement -->
-        <section id="hebergement" class="my-2 col-12 row m-0 justify-content-center">
-          <h2>hébergements</h2>
-          <div class="row g-4 align-items-center col-lg-6 col-md-10">
-            <div class="col-12">
-              <!-- UTILISATION DE BLADE POUR L'IMAGE -->
-              <img src="{{ asset('img/hebergement.jpg') }}" alt="Exemple d'hébergement" /> 
+        <!-- NOUVELLE SECTION DE RÉSIDENCES (Exemples de cartes) -->
+        <section id="residences" class="container py-5">
+          <h2>Nos Résidences Sélectionnées</h2>
+          
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            
+            <!-- Carte Résidence 1 -->
+            <div class="col">
+              <div class="card residence-card">
+                <!-- UTILISATION DE BLADE POUR L'IMAGE -->
+                <img src="{{ asset('img/residence_1.jpg') }}" class="card-img-top" alt="Image de la Résidence Soleil">
+                <div class="card-body">
+                  <h5 class="card-title">Résidence Soleil [Image of Africa]</h5>
+                  <p class="card-text">
+                    Studio moderne avec vue sur mer, parfait pour un séjour en couple. 
+                    Situé au cœur de la ville.
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="card-price">65€ / nuit</span>
+                    <span class="text-warning">
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i>
+                    </span>
+                  </div>
+                  <a href="{{ route('details_residence', ['id' => 1]) }}" class="btn btn-primary btn-card-action">Voir Détails</a>
+                </div>
+              </div>
             </div>
 
-            <div class="col-12">
-              <div class="accordion" id="accordionHebergement">
-                <!-- ACCORDION CONTENU -->
-                <div class="accordion-item border-0" style="background: #e0f2f1;">
-                  <h2 class="accordion-header" id="headingTypes">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTypes" aria-expanded="true" aria-controls="collapseTypes">
-                      types d'hébergements
-                    </button>
-                  </h2>
-                  <div id="collapseTypes" class="accordion-collapse collapse" aria-labelledby="headingTypes" data-bs-parent="#accordionHebergement">
-                    <div class="accordion-body">
-                      <!-- Listes Studio, Chambre, Villa -->
-                    </div>
+            <!-- Carte Résidence 2 -->
+            <div class="col">
+              <div class="card residence-card">
+                <!-- UTILISATION DE BLADE POUR L'IMAGE -->
+                <img src="{{ asset('img/residence_2.jpg') }}" class="card-img-top" alt="Image de la Villa Oasis">
+                <div class="card-body">
+                  <h5 class="card-title">Villa Oasis</h5>
+                  <p class="card-text">
+                    Grande villa avec piscine privée, 4 chambres, idéale pour une famille nombreuse.
+                    Quartier calme et sécurisé.
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="card-price">180€ / nuit</span>
+                    <span class="text-warning">
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
+                    </span>
                   </div>
+                  <a href="{{ route('details_residence', ['id' => 2]) }}" class="btn btn-primary btn-card-action">Voir Détails</a>
                 </div>
+              </div>
+            </div>
 
-                <div class="accordion-item border-0" style="background: #e0f2f1;">
-                  <h2 class="accordion-header" id="headingConditions">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConditions" aria-expanded="false" aria-controls="collapseConditions">
-                      conditions de réservation
-                    </button>
-                  </h2>
-                  <div id="collapseConditions" class="accordion-collapse collapse" aria-labelledby="headingConditions" data-bs-parent="#accordionHebergement">
-                    <div class="accordion-body">
-                      <!-- Contenu des conditions -->
-                    </div>
+            <!-- Carte Résidence 3 -->
+            <div class="col">
+              <div class="card residence-card">
+                <!-- UTILISATION DE BLADE POUR L'IMAGE -->
+                <img src="{{ asset('img/residence_3.jpg') }}" class="card-img-top" alt="Image de l'Appartement Chic">
+                <div class="card-body">
+                  <h5 class="card-title">Appartement Chic</h5>
+                  <p class="card-text">
+                    Appartement de luxe en centre-ville, très bien équipé et moderne.
+                    Proche des transports et commerces.
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="card-price">95€ / nuit</span>
+                    <span class="text-warning">
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    </span>
                   </div>
+                  <a href="{{ route('details_residence', ['id' => 3]) }}" class="btn btn-primary btn-card-action">Voir Détails</a>
                 </div>
               </div>
-              <div class="text-center mt-4">
-                <!-- BOUTON AVEC ROUTE BLADE -->
-                <a href="{{ route('recherche') }}" class="btn-reserver">réserver</a>
-              </div>
+            </div>
+            
+            <!-- Bouton pour voir toutes les résidences -->
+            <div class="col-12 text-center mt-5">
+                <a href="{{ route('recherche') }}" class="btn-reserver">Voir toutes les résidences</a>
             </div>
           </div>
         </section>
         
-        <!-- ANCRAGES POUR LE MENU (Location, Circuits, Réservation) -->
-        <section id="location" style="height: 100px; text-align: center; padding: 20px;">
-            <h3 style="color: #006d77;">Ancrage Location de Véhicule</h3>
-        </section>
-        <section id="circuits" style="height: 100px; text-align: center; padding: 20px; background-color: #f0f0f0;">
-            <h3 style="color: #006d77;">Ancrage Circuits</h3>
-        </section>
-        <section id="reservation" style="height: 100px; text-align: center; padding: 20px;">
-            <h3 style="color: #006d77;">Ancrage Réservation</h3>
-        </section>
     </main>
 
+    <!-- FOOTER FIXÉ EN BAS -->
     <footer>
         <p id="contact">&copy; 2025 afrik’hub. tous droits réservés.<br />afrikhub@gmail.com</p>
     </footer>
 
-    <!-- Scripts Bootstrap (pour le Offcanvas) -->
+    <!-- Scripts Bootstrap (pour le Offcanvas et les Cards) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     
 </body>
