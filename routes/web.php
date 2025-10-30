@@ -127,19 +127,6 @@ Route::get('/admin/users/{user}/residences', [AdminController::class, 'showUserR
 Route::post('/admin/users/{user}/toggle', [AdminController::class, 'toggleUserSuspension'])->name('admin.users.toggle_suspension');
 
 
-
-
-Route::get('/test-mail', function () {
-    $user = User::first(); // On prend un utilisateur existant
-    try {
-        Mail::to($user->email)->send(new TokenMail($user));
-        return '✅ Mail envoyé avec succès à ' . $user->email;
-    } catch (\Exception $e) {
-        return '❌ Erreur SMTP : ' . $e->getMessage();
-    }
-});
-
-
 // Route pour supprimer (méthode DELETE)
 Route::delete('/admin/users/{user}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy');
 
