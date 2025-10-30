@@ -134,5 +134,5 @@ Route::delete('/admin/users/{user}', [AdminController::class, 'destroyUser'])->n
 
 use App\Http\Controllers\MailTestController;
 
-Route::get('/send-mail', [MailTestController::class, 'index'])->name('mail.form');
-Route::post('/send-mail', [MailTestController::class, 'send'])->name('mail.send');
+Route::get('/sendmail', [MailTestController::class, 'index'])->name('');
+Route::post('/sendmail', [MailTestController::class, 'send'])->name('mail.send');
