@@ -176,12 +176,12 @@
         }
 
         /* ---------------- SECTION HÉBERGEMENT (CARDS) ---------------- */
-        #hebergement {
+        #residences {
           padding: 3rem 1rem;
           background: #f8f8f8;
         }
 
-        #hebergement h2 {
+        #residences h2 {
           font-weight: 800;
           margin-bottom: 3rem;
           text-align: center;
@@ -263,7 +263,7 @@
           }
         }
         @media (max-width: 768px) {
-          #hebergement h2 { font-size: 2rem; }
+          #residences h2 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -330,7 +330,7 @@
           </div>
         </section>
         
-        <!-- NOUVELLE SECTION DE RÉSIDENCES (Exemples de cartes) -->
+        <!-- SECTION DE RÉSIDENCES -->
         <section id="residences" class="container py-5">
           <h2>Nos Résidences Sélectionnées</h2>
           
@@ -353,7 +353,8 @@
                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i>
                     </span>
                   </div>
-                  <a href="{{ route('details_residence', ['id' => 1]) }}" class="btn btn-primary btn-card-action">Voir Détails</a>
+                  <!-- LIEN ANCRE (#) -->
+                  <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
                 </div>
               </div>
             </div>
@@ -375,7 +376,8 @@
                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
                     </span>
                   </div>
-                  <a href="{{ route('details_residence', ['id' => 2]) }}" class="btn btn-primary btn-card-action">Voir Détails</a>
+                  <!-- LIEN ANCRE (#) -->
+                  <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
                 </div>
               </div>
             </div>
@@ -397,13 +399,15 @@
                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
                     </span>
                   </div>
-                  <a href="{{ route('details_residence', ['id' => 3]) }}" class="btn btn-primary btn-card-action">Voir Détails</a>
+                  <!-- LIEN ANCRE (#) -->
+                  <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
                 </div>
               </div>
             </div>
             
             <!-- Bouton pour voir toutes les résidences -->
             <div class="col-12 text-center mt-5">
+                <!-- LIEN ANCRE (#) -->
                 <a href="{{ route('recherche') }}" class="btn-reserver">Voir toutes les résidences</a>
             </div>
           </div>
