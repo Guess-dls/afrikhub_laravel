@@ -13,7 +13,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('email', 191)->unique();
             $table->string('password');
-            $table->timestamp('email_verified_at')->nullable(); // <-- ajouté
+            $table->string('contact')->nullable();
+            $table->string('type_compte')->nullable();
+            $table->string('token', 64)->nullable();
+            $table->string('statut')->default('inactif');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken(); // pour la session "remember me"
             $table->timestamps();
         });
     }
