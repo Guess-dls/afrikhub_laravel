@@ -14,7 +14,7 @@
           min-height: 100vh; /* S'assure que le corps prend au moins toute la hauteur de la fenêtre */
           display: flex;
           flex-direction: column; /* Organise les enfants (header, main, footer) verticalement */
-          padding-top: 70px; /* Compense la hauteur du header fixe */
+          padding-top: 70px; /* Compense la hauteur du header fixe, ajusté à la taille réelle du header */
         }
         
         main {
@@ -22,22 +22,22 @@
           background-color: #f8f8f8; /* Fond léger pour le contenu */
         }
 
-        /* ---------------- HEADER ET NAV ---------------- */
-
+        /* ---------------- HEADER ET NAV (Code fourni, ajusté pour la compatibilité) ---------------- */
         header {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 70px;
+          position: relative; /* Changé de 'fixed' à 'relative' comme demandé dans le nouveau CSS */
           background: linear-gradient(135deg, #006d77, #00afb9);
           color: white;
           box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-          z-index: 1000;
-          padding: 0 1rem;
-          display: flex;  
+          z-index: 10;
+          padding: 0.5rem 1rem;
+          display: flex; /* Ajouté pour le layout du header */
           align-items: center;
           justify-content: space-between;
+        }
+        
+        /* Réinitialisation de la hauteur de padding-top du body car le header n'est plus "fixed" */
+        body {
+            padding-top: 0; 
         }
 
         header img {
@@ -45,7 +45,7 @@
           object-fit: contain;
         }
 
-        /* Styles pour les liens de bureau */
+        /* Styles pour les liens de bureau (basés sur le HTML existant) */
         .nav-desktop-links a {
             color: white;
             text-decoration: none;
@@ -76,8 +76,8 @@
           background-color: rgba(255,255,255,0.2);
           color: #fff;
         }
-
-        /* ---------------- OFFCANVAS CUSTOM STYLE (SIDEBAR MOBILE) ---------------- */
+        
+        /* ---------------- OFFCANVAS CUSTOM STYLE (SIDEBAR MOBILE - conservé) ---------------- */
 
         /* En-tête du Offcanvas (Sidebar) */
         .offcanvas-header {
@@ -125,13 +125,10 @@
             color: #004d40;
         }
 
-        /* ---------------- SECTION ACCUEIL ---------------- */
+        /* ---------------- SECTION ACCUEIL (Code fourni, URL d'image ajustée) ---------------- */
         #accueil {
-        /* Utilisez une image de placeholder pour simuler l'asset */
-        background: linear-gradient(rgba(0,91,107,0.7), rgba(0,91,107,0.5)),  
-               url('https://placehold.co/1920x700/555555/eeeeee?text=Image+d%27Accueil')  
-               no-repeat center center / cover;  
-        height: 700px;
+          background: linear-gradient(rgba(0,91,107,0.7), rgba(0,91,107,0.5)), url('https://placehold.co/1920x700/555555/eeeeee?text=Image+d%27Accueil') no-repeat center center / cover;
+          height: 700px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -154,8 +151,83 @@
           font-weight: 400;
           text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
         }
+        
+        /* ---------------- SECTION HÉBERGEMENT (Code fourni) ---------------- */
+        #hebergement {
+          padding: 3rem 1rem;
+          background: #e0f2f1;
+          color: #004d40;
+          border-radius: 20px;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+          margin: 3rem auto;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-        /* Boutons d'action */
+        #hebergement:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+        }
+
+        #hebergement h2 {
+          font-weight: 800;
+          margin-bottom: 2rem;
+          text-align: center;
+          font-size: 2.8rem;
+          color: #006d77;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+        }
+
+        #hebergement img {
+          border-radius: 15px;
+          box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+
+        #hebergement img:hover { transform: scale(1.05); }
+
+        /* Accordion */
+        .accordion-button {
+          background: linear-gradient(135deg, #006d77, #00afb9) !important;
+          color: white !important;
+          font-weight: 700;
+          border-radius: 12px !important;
+          transition: all 0.3s ease;
+        }
+
+        .accordion-button:not(.collapsed) {
+          background: linear-gradient(135deg, #004d55, #007f7a) !important;
+          color: #fff;
+        }
+
+        .accordion-body {
+          font-weight: 600;
+          color: #004d40;
+        }
+        .services-list li {
+          padding: 8px 0;
+          transition: transform 0.2s ease, background 0.3s ease;
+          list-style-type: '— '; /* Rétabli le style de liste pour cohérence */
+          margin-left: 0.5rem;
+        }
+
+        .services-list li:hover {
+          background: rgba(0,109,119,0.1);
+          transform: translateX(5px);
+        }
+
+        .toggle-services i {
+          transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .toggle-services:hover i { color: #004d40; }
+        
+        /* Reste du CSS pour les résidences, footer, etc. (ajusté ou conservé) */
+
+        /* ---------------- Bouton Général (btn-reserver) ---------------- */
         .btn-reserver {
             display: inline-block;
             padding: 12px 28px;
@@ -166,94 +238,26 @@
             border-radius: 30px;
             text-decoration: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s ease, transform 0.2s ease;
+            transition: background 0.3s ease;
+            animation: bounce 2s infinite;
         }
 
         .btn-reserver:hover {
             background: #0056b3;
-            transform: translateY(-2px);
         }
 
-        /* ---------------- SECTION HÉBERGEMENT (ACCORDÉON) ---------------- */
-        #hebergement {
-            padding: 3rem 1rem;
-            text-align: center;
-        }
+        @keyframes bounce {
 
-        #hebergement h2 {
-          font-weight: 800;
-          margin-bottom: 3rem;
-          text-align: center;
-          font-size: 2.8rem;
-          color: #006d77;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-        }
+            0%,
+            100% {
+                transform: translateY(0);
+            }
 
-        #hebergement img {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
+            50% {
+                transform: translateY(-5px); /* Diminué légèrement le rebond */
+            }
         }
         
-        .accordion-button {
-            background-color: #00afb9 !important;
-            color: white !important;
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-transform: capitalize;
-        }
-
-        .accordion-button:not(.collapsed) {
-            background-color: #006d77 !important;
-            box-shadow: none;
-        }
-
-        .accordion-body .mb-3 {
-            padding: 0.75rem;
-            border-bottom: 1px solid #c8e6c9;
-            cursor: pointer;
-        }
-
-        .accordion-body .mb-3:hover {
-            background-color: #e8f5e9;
-        }
-
-        .accordion-body .services-list {
-            list-style: none;
-            padding-left: 15px;
-            margin-bottom: 0;
-            margin-top: 10px;
-            font-size: 0.95rem;
-            color: #388e3c;
-            display: none; /* Cache par défaut */
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
-        }
-        
-        .accordion-body .services-list.show-services {
-            display: block; /* Affiche quand actif */
-            max-height: 200px; /* Doit être assez grand pour le contenu */
-            padding-bottom: 10px;
-        }
-
-        .toggle-services .fa {
-            transition: transform 0.3s ease;
-        }
-
-        .toggle-services.rotated .fa {
-            transform: rotate(180deg);
-        }
-
-        .accordion-body ul li {
-            list-style-type: '— ';
-            margin-left: 0.5rem;
-        }
-
-
         /* ---------------- SECTION RÉSIDENCES ---------------- */
         #residences {
           padding: 3rem 1rem;
@@ -343,6 +347,9 @@
         }
         @media (max-width: 768px) {
           #residences h2, #hebergement h2 { font-size: 2rem; }
+          #hebergement { padding: 2rem 1rem; }
+          .accordion-button { font-size: 1rem !important; padding: 0.75rem 1rem !important; }
+          .btn-reserver { font-size: 1rem; padding: 12px 28px; }
         }
     </style>
 </head>
@@ -506,19 +513,4 @@
                 <img src="{{ asset('img/residence_3.jpg') }}" class="card-img-top" alt="Image de l'Appartement Chic">
                 <div class="card-body">
                   <h5 class="card-title">Appartement Chic</h5>
-                  <p class="card-text">
-                    Appartement de luxe en centre-ville, très bien équipé et moderne.
-                    Proche des transports et commerces.
-                  </p>
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="card-price">95€ / nuit</span>
-                    <span class="text-warning">
-                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    </span>
-                  </div>
-                  <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
-                </div>
-              </div>
-            </div>
-            
-            <div
+                  <p class="
