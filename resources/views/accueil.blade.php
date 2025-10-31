@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -218,7 +217,7 @@
           border-radius: 0 0 12px 12px;
         }
         
-        /* Styles des listes de services */
+        /* Styles des listes de services (Optimisé) */
         .service-list-item {
             padding: 5px 0;
             list-style-type: '— ';
@@ -235,6 +234,9 @@
             color: #006d77;
             padding: 10px 0;
             margin-top: 10px;
+        }
+        .service-type-title:first-child {
+            margin-top: 0;
         }
         
         /* Reste des styles... */
@@ -335,21 +337,21 @@
                   <div id="collapseTypes" class="accordion-collapse collapse show" aria-labelledby="headingTypes" data-bs-parent="#accordionHebergement">
                     <div class="accordion-body">
                         
-                        <div class="service-type-title">Studio</div>
+                        <p class="service-type-title">Studio</p>
                         <ul class="list-unstyled">
                             <li class="service-list-item">wifi gratuit</li>
                             <li class="service-list-item">ventilateur</li>
                             <li class="service-list-item">caméra de surveillance</li>
                         </ul>
                         
-                        <div class="service-type-title">Chambre unique</div>
+                        <p class="service-type-title">Chambre unique</p>
                         <ul class="list-unstyled">
                             <li class="service-list-item">wifi gratuit</li>
                             <li class="service-list-item">climatisation</li>
                             <li class="service-list-item">petit déjeuner inclus</li>
                         </ul>
                         
-                        <div class="service-type-title">Villa avec piscine</div>
+                        <p class="service-type-title">Villa avec piscine</p>
                         <ul class="list-unstyled">
                             <li class="service-list-item">wifi gratuit</li>
                             <li class="service-list-item">piscine privée</li>
@@ -382,3 +384,86 @@
               </div>
             </div>
           </div>
+        </section>
+        
+        <section id="residences" class="container py-5">
+          <h2>Nos Résidences Sélectionnées</h2>
+          
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            
+            <div class="col">
+              <div class="card residence-card">
+                <img src="{{ asset('img/residence_1.jpg') }}" class="card-img-top" alt="Image de la Résidence Soleil">
+                <div class="card-body">
+                  <h5 class="card-title">Résidence Soleil [Image d'un immeuble en Afrique]</h5>
+                  <p class="card-text">
+                    Studio moderne avec vue sur mer, parfait pour un séjour en couple. 
+                    Situé au cœur de la ville.
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="card-price">65€ / nuit</span>
+                    <span class="text-warning">
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i>
+                    </span>
+                  </div>
+                  <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card residence-card">
+                <img src="{{ asset('img/residence_2.jpg') }}" class="card-img-top" alt="Image de la Villa Oasis">
+                <div class="card-body">
+                  <h5 class="card-title">Villa Oasis</h5>
+                  <p class="card-text">
+                    Grande villa avec piscine privée, 4 chambres, idéale pour une famille nombreuse.
+                    Quartier calme et sécurisé.
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="card-price">180€ / nuit</span>
+                    <span class="text-warning">
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
+                    </span>
+                  </div>
+                  <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card residence-card">
+                <img src="{{ asset('img/residence_3.jpg') }}" class="card-img-top" alt="Image de l'Appartement Chic">
+                <div class="card-body">
+                  <h5 class="card-title">Appartement Chic</h5>
+                  <p class="card-text">
+                    Appartement de luxe en centre-ville, très bien équipé et moderne.
+                    Proche des transports et commerces.
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="card-price">95€ / nuit</span>
+                    <span class="text-warning">
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    </span>
+                  </div>
+                  <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-12 text-center mt-5">
+                <a href="{{ route('recherche') }}" class="btn-reserver">Voir toutes les résidences</a>
+            </div>
+          </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <p id="contact">&copy; 2025 afrik’hub. tous droits réservés.<br />afrikhub@gmail.com</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+      document.addEven
