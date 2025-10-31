@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -178,7 +179,11 @@
         #hebergement img:hover { transform: scale(1.05); }
 
         /* Styles de l'accordéon standard Bootstrap (personnalisés) */
-        
+        .accordion-item {
+            border: none;
+            background-color: transparent !important;
+        }
+
         /* Bouton principal */
         .accordion-button {
           background: linear-gradient(135deg, #006d77, #00afb9) !important;
@@ -186,7 +191,7 @@
           font-weight: 700;
           border-radius: 12px !important;
           transition: all 0.3s ease;
-          box-shadow: none !important; /* Retirer le box-shadow par défaut de Bootstrap */
+          box-shadow: none !important;
         }
 
         /* Bouton lorsqu'il est ouvert */
@@ -196,31 +201,40 @@
           border-bottom-right-radius: 0 !important;
           border-bottom-left-radius: 0 !important;
         }
+        
+        /* Flèche de l'accordéon */
+        .accordion-button:not(.collapsed)::after {
+            transform: rotate(-180deg);
+        }
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
 
         /* Contenu de l'accordéon */
         .accordion-body {
           font-weight: 600;
           color: #004d40;
-          background-color: #f0fdfd; /* Fond léger pour le contenu */
+          background-color: #f0fdfd;
+          border-radius: 0 0 12px 12px;
         }
         
-        /* Contenu du sous-accordéon */
-        .sub-accordion-header {
-            cursor: pointer;
-            padding: 8px 0;
-            transition: background-color 0.3s;
-            border-bottom: 1px solid #c8e6c9;
-        }
-        
-        .sub-accordion-header:hover {
-            background-color: #e8f5e9;
-        }
-
+        /* Styles des listes de services */
         .service-list-item {
-            padding: 3px 0;
+            padding: 5px 0;
             list-style-type: '— ';
             margin-left: 0.5rem;
             color: #388e3c;
+            border-bottom: 1px solid #e0f2f1;
+        }
+        .service-list-item:last-child {
+            border-bottom: none;
+        }
+        .service-type-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #006d77;
+            padding: 10px 0;
+            margin-top: 10px;
         }
         
         /* Reste des styles... */
@@ -312,7 +326,7 @@
 
             <div class="col-12">
               <div class="accordion" id="accordionHebergement">
-                <div class="accordion-item border-0">
+                <div class="accordion-item">
                   <h2 class="accordion-header" id="headingTypes">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTypes" aria-expanded="true" aria-controls="collapseTypes">
                       types d'hébergements
@@ -320,61 +334,33 @@
                   </h2>
                   <div id="collapseTypes" class="accordion-collapse collapse show" aria-labelledby="headingTypes" data-bs-parent="#accordionHebergement">
                     <div class="accordion-body">
-                      
-                      <div class="mb-3">
-                        <div class="sub-accordion-header" data-bs-toggle="collapse" data-bs-target="#subCollapseStudio" aria-expanded="true" aria-controls="subCollapseStudio">
-                           <div class="d-flex align-items-center justify-content-between">
-                               <strong>Studio</strong>
-                               <span class="fa fa-chevron-down text-secondary"></span>
-                           </div>
-                        </div>
-                        <div id="subCollapseStudio" class="collapse show">
-                            <ul class="list-unstyled mt-2">
-                                <li class="service-list-item">wifi gratuit</li>
-                                <li class="service-list-item">ventilateur</li>
-                                <li class="service-list-item">caméra de surveillance</li>
-                            </ul>
-                        </div>
-                      </div>
-                      
-                      <div class="mb-3">
-                        <div class="sub-accordion-header" data-bs-toggle="collapse" data-bs-target="#subCollapseChambre" aria-expanded="false" aria-controls="subCollapseChambre">
-                            <div class="d-flex align-items-center justify-content-between">
-                               <strong>Chambre unique</strong>
-                               <span class="fa fa-chevron-down text-secondary"></span>
-                            </div>
-                        </div>
-                        <div id="subCollapseChambre" class="collapse">
-                            <ul class="list-unstyled mt-2">
-                                <li class="service-list-item">wifi gratuit</li>
-                                <li class="service-list-item">climatisation</li>
-                                <li class="service-list-item">petit déjeuner inclus</li>
-                            </ul>
-                        </div>
-                      </div>
-
-                      <div class="mb-3">
-                        <div class="sub-accordion-header" data-bs-toggle="collapse" data-bs-target="#subCollapseVilla" aria-expanded="false" aria-controls="subCollapseVilla">
-                           <div class="d-flex align-items-center justify-content-between">
-                               <strong>Villa avec piscine</strong>
-                               <span class="fa fa-chevron-down text-secondary"></span>
-                           </div>
-                        </div>
-                        <div id="subCollapseVilla" class="collapse">
-                            <ul class="list-unstyled mt-2">
-                                <li class="service-list-item">wifi gratuit</li>
-                                <li class="service-list-item">piscine privée</li>
-                                <li class="service-list-item">climatisation</li>
-                                <li class="service-list-item">parking gratuit</li>
-                            </ul>
-                        </div>
-                      </div>
-                      
+                        
+                        <div class="service-type-title">Studio</div>
+                        <ul class="list-unstyled">
+                            <li class="service-list-item">wifi gratuit</li>
+                            <li class="service-list-item">ventilateur</li>
+                            <li class="service-list-item">caméra de surveillance</li>
+                        </ul>
+                        
+                        <div class="service-type-title">Chambre unique</div>
+                        <ul class="list-unstyled">
+                            <li class="service-list-item">wifi gratuit</li>
+                            <li class="service-list-item">climatisation</li>
+                            <li class="service-list-item">petit déjeuner inclus</li>
+                        </ul>
+                        
+                        <div class="service-type-title">Villa avec piscine</div>
+                        <ul class="list-unstyled">
+                            <li class="service-list-item">wifi gratuit</li>
+                            <li class="service-list-item">piscine privée</li>
+                            <li class="service-list-item">climatisation</li>
+                            <li class="service-list-item">parking gratuit</li>
+                        </ul>
                     </div>
                   </div>
                 </div>
 
-                <div class="accordion-item border-0">
+                <div class="accordion-item">
                   <h2 class="accordion-header" id="headingConditions">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConditions" aria-expanded="false" aria-controls="collapseConditions">
                       conditions de réservation
@@ -396,54 +382,3 @@
               </div>
             </div>
           </div>
-        </section>
-        
-        <section id="residences" class="container py-5">
-          <h2>Nos Résidences Sélectionnées</h2>
-          
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <div class="col">
-              <div class="card residence-card">
-                <img src="{{ asset('img/residence_1.jpg') }}" class="card-img-top" alt="Image de la Résidence Soleil">
-                <div class="card-body">
-                  <h5 class="card-title">Résidence Soleil [Image d'un immeuble en Afrique]</h5>
-                  <p class="card-text">
-                    Studio moderne avec vue sur mer, parfait pour un séjour en couple. 
-                    Situé au cœur de la ville.
-                  </p>
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="card-price">65€ / nuit</span>
-                    <span class="text-warning">
-                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i>
-                    </span>
-                  </div>
-                  <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
-                </div>
-              </div>
-            </div>
-             <div class="col">
-              <div class="card residence-card">
-                <img src="{{ asset('img/residence_2.jpg') }}" class="card-img-top" alt="Image de la Villa Oasis">
-                <div class="card-body">
-                  <h5 class="card-title">Villa Oasis</h5>
-                  <p class="card-text">
-                    Grande villa avec piscine privée, 4 chambres, idéale pour une famille nombreuse.
-                    Quartier calme et sécurisé.
-                  </p>
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="card-price">180€ / nuit</span>
-                    <span class="text-warning">
-                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
-                    </span>
-                  </div>
-                  <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card residence-card">
-                <img src="{{ asset('img/residence_3.jpg') }}" class="card-img-top" alt="Image de l'Appartement Chic">
-                <div class="card-body">
-                  <h5 class="card-title">Appartement Chic</h5>
-                  <p class="card-text">
-                    Appartement de luxe en centre-ville, très bien équipé et modern
