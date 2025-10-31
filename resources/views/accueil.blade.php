@@ -40,7 +40,6 @@
           object-fit: contain;
         }
 
-        /* Styles pour les liens de bureau */
         .nav-desktop-links a {
             color: white;
             text-decoration: none;
@@ -178,64 +177,116 @@
 
         #hebergement img:hover { transform: scale(1.05); }
 
-        /* Accordion */
-        .accordion-button {
-          background: linear-gradient(135deg, #006d77, #00afb9) !important;
-          color: white !important;
-          font-weight: 700;
-          border-radius: 12px !important;
-          transition: all 0.3s ease;
-        }
-
-        .accordion-button:not(.collapsed) {
-          background: linear-gradient(135deg, #004d55, #007f7a) !important;
-          color: #fff;
-        }
-
-        .accordion-body {
-          font-weight: 600;
-          color: #004d40;
+        /* Styles pour l'ACCORDION CSS-ONLY (avec radio buttons) */
+        
+        /* Masque les boutons radio Bootstrap */
+        .css-accordion input[type="radio"] {
+            display: none; 
         }
         
-        /* Liste de services masquée/affichée par JS */
-        .services-list {
-            list-style: none;
-            padding-left: 15px;
-            margin-bottom: 0;
+        /* Style du bouton d'ouverture (Label) */
+        .accordion-button {
+          display: block;
+          padding: 1rem 1.25rem;
+          background: linear-gradient(135deg, #006d77, #00afb9);
+          color: white;
+          font-weight: 700;
+          border-radius: 12px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          position: relative;
+          margin-bottom: 0.5rem;
+        }
+
+        /* Flèche par défaut */
+        .accordion-button::after {
+            font-family: 'FontAwesome';
+            content: "\f078"; /* fa-chevron-down */
+            position: absolute;
+            right: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+        }
+
+        /* Style de l'accordéon ouvert (quand l'input est checked) */
+        .css-accordion input[type="radio"]:checked + .accordion-button {
+            background: linear-gradient(135deg, #004d55, #007f7a);
+        }
+
+        /* Rotation de la flèche quand ouvert */
+        .css-accordion input[type="radio"]:checked + .accordion-button::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        /* Contenu de l'accordéon */
+        .accordion-content {
             max-height: 0;
             overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-        }
-        
-        .services-list.show-services {
-            max-height: 200px;
-            opacity: 1;
-            padding-bottom: 10px;
-        }
-        
-        .services-list li {
-          padding: 8px 0;
-          transition: transform 0.2s ease, background 0.3s ease;
-          list-style-type: '— ';
-          margin-left: 0.5rem;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            padding: 0 1.25rem;
+            background-color: #f0fdfd; /* Couleur de fond pour le contenu */
+            border-radius: 0 0 12px 12px;
+            margin-bottom: 1rem;
         }
 
-        .services-list li:hover {
-          background: rgba(0,109,119,0.1);
-          transform: translateX(5px);
+        /* Affichage du contenu quand l'input est checked */
+        .css-accordion input[type="radio"]:checked ~ .accordion-content {
+            max-height: 500px; /* Doit être suffisamment grand */
+            padding: 1rem 1.25rem;
         }
 
-        .toggle-services i {
-          transition: transform 0.3s ease, color 0.3s ease;
+        /* Styles internes du contenu des types d'hébergement */
+        .type-item-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: bold;
+            padding: 0.75rem 0;
+            cursor: pointer;
+            border-bottom: 1px solid #c8e6c9;
+            transition: background-color 0.3s;
+        }
+
+        .type-item-label:hover {
+            background-color: #e8f5e9;
+        }
+
+        .service-icon {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+            padding-left: 1rem;
         }
         
-        /* Rotation de l'icône au clic */
-        .toggle-services.rotated i {
+        .type-checkbox:checked ~ .type-item-label .service-icon {
             transform: rotate(180deg);
         }
+
+        .type-checkbox:checked ~ .service-content {
+            max-height: 200px; /* Hauteur suffisante */
+            padding-bottom: 1rem;
+        }
         
-        /* Bouton "Réserver" */
+        .service-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.5rem;
+        }
+        
+        .service-content ul li {
+            list-style-type: '— ';
+            margin-left: 0.5rem;
+            padding: 3px 0;
+            color: #388e3c;
+        }
+        
+        /* ---------------- Bouton Général (btn-reserver) ---------------- */
         .btn-reserver {
             display: inline-block;
             padding: 12px 28px;
@@ -407,55 +458,52 @@
               <img src="{{ asset('img/hebergement.jpg') }}" class="img-fluid" alt="Exemple d'hébergement" />
             </div>
 
-            <div class="col-12">
-              <div class="accordion" id="accordionHebergement">
-                <div class="accordion-item border-0" style="background: #e0f2f1;">
-                  <h2 class="accordion-header" id="headingTypes">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTypes" aria-expanded="true" aria-controls="collapseTypes">
-                      types d'hébergements
-                    </button>
-                  </h2>
-                  <div id="collapseTypes" class="accordion-collapse collapse show" aria-labelledby="headingTypes" data-bs-parent="#accordionHebergement">
-                    <div class="accordion-body">
-                      
-                      <div class="mb-3 border-0 type-item">
-                        <div class="d-flex align-items-center justify-content-between"><strong>Studio</strong><span class="toggle-services"><i class="fa fa-chevron-down"></i></span></div>
-                        <ul class="services-list mt-2 show-services"><li>wifi gratuit</li><li>ventilateur</li><li>caméra de surveillance</li></ul>
-                      </div>
-                      
-                      <div class="mb-3 type-item">
-                        <div class="d-flex align-items-center justify-content-between"><strong>Chambre unique</strong><span class="toggle-services"><i class="fa fa-chevron-down"></i></span></div>
-                        <ul class="services-list mt-2"><li>wifi gratuit</li><li>climatisation</li><li>petit déjeuner inclus</li></ul>
-                      </div>
-                      
-                      <div class="mb-3 type-item">
-                        <div class="d-flex align-items-center justify-content-between"><strong>Villa avec piscine</strong><span class="toggle-services"><i class="fa fa-chevron-down"></i></span></div>
-                        <ul class="services-list mt-2"><li>wifi gratuit</li><li>piscine privée</li><li>climatisation</li><li>parking gratuit</li></ul>
-                      </div>
-                    </div>
-                  </div>
+            <div class="col-12 css-accordion">
+              <input type="radio" name="accordion" id="acc-types" checked>
+              <label for="acc-types" class="accordion-button">types d'hébergements</label>
+              <div class="accordion-content">
+                
+                <input type="checkbox" id="type-studio" class="type-checkbox" checked>
+                <label for="type-studio" class="type-item-label">
+                    <strong>Studio</strong>
+                    <span class="service-icon"><i class="fa fa-chevron-down"></i></span>
+                </label>
+                <div class="service-content">
+                    <ul><li>wifi gratuit</li><li>ventilateur</li><li>caméra de surveillance</li></ul>
+                </div>
+                
+                <input type="checkbox" id="type-chambre" class="type-checkbox">
+                <label for="type-chambre" class="type-item-label">
+                    <strong>Chambre unique</strong>
+                    <span class="service-icon"><i class="fa fa-chevron-down"></i></span>
+                </label>
+                <div class="service-content">
+                    <ul><li>wifi gratuit</li><li>climatisation</li><li>petit déjeuner inclus</li></ul>
                 </div>
 
-                <div class="accordion-item border-0" style="background: #e0f2f1;">
-                  <h2 class="accordion-header" id="headingConditions">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConditions" aria-expanded="false" aria-controls="collapseConditions">
-                      conditions de réservation
-                    </button>
-                  </h2>
-                  <div id="collapseConditions" class="accordion-collapse collapse" aria-labelledby="headingConditions" data-bs-parent="#accordionHebergement">
-                    <div class="accordion-body">
-                      <ul>
-                        <li>réservation préalable requise</li>
-                        <li>acompte de 20% pour confirmation</li>
-                        <li>annulation gratuite jusqu'à 48h avant l'arrivée</li>
-                      </ul>
-                    </div>
-                  </div>
+                <input type="checkbox" id="type-villa" class="type-checkbox">
+                <label for="type-villa" class="type-item-label">
+                    <strong>Villa avec piscine</strong>
+                    <span class="service-icon"><i class="fa fa-chevron-down"></i></span>
+                </label>
+                <div class="service-content">
+                    <ul><li>wifi gratuit</li><li>piscine privée</li><li>climatisation</li><li>parking gratuit</li></ul>
                 </div>
               </div>
-              <div class="text-center mt-4">
-                <a href="{{ route('recherche') }}" class="btn-reserver">réserver</a>
+
+              <input type="radio" name="accordion" id="acc-conditions">
+              <label for="acc-conditions" class="accordion-button">conditions de réservation</label>
+              <div class="accordion-content">
+                <ul>
+                  <li>réservation préalable requise</li>
+                  <li>acompte de 20% pour confirmation</li>
+                  <li>annulation gratuite jusqu'à 48h avant l'arrivée</li>
+                </ul>
               </div>
+            </div>
+            
+            <div class="col-12 text-center mt-4">
+              <a href="{{ route('recherche') }}" class="btn-reserver">réserver</a>
             </div>
           </div>
         </section>
@@ -507,22 +555,4 @@
 
             <div class="col">
               <div class="card residence-card">
-                <img src="{{ asset('img/residence_3.jpg') }}" class="card-img-top" alt="Image de l'Appartement Chic">
-                <div class="card-body">
-                  <h5 class="card-title">Appartement Chic</h5>
-                  <p class="card-text">
-                    Appartement de luxe en centre-ville, très bien équipé et moderne.
-                    Proche des transports et commerces.
-                  </p>
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="card-price">95€ / nuit</span>
-                    <span class="text-warning">
-                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    </span>
-                  </div>
-                  <a href="#" class="btn btn-primary btn-card-action">Voir Détails</a>
-                </div>
-              </div>
-            </div>
-            
-     
+                <img src="{{ asset('img/residence_3.jpg') }}"
